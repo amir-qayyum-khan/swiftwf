@@ -22,9 +22,9 @@
         <!-- Navigation -->
         <header class="bg-white p-4 rounded-2xl shadow-sm mb-8">
             <nav class="flex justify-center items-center space-x-4 sm:space-x-8">
-                <a href="#" class="nav-link text-gray-600 hover:text-blue-600 font-medium pb-2 transition-colors duration-200 active" data-page="intro">Introduction</a>
-                <a href="#" class="nav-link text-gray-600 hover:text-blue-600 font-medium pb-2 transition-colors duration-200" data-page="privacy">Privacy Policy</a>
-                <a href="#" class="nav-link text-gray-600 hover:text-blue-600 font-medium pb-2 transition-colors duration-200" data-page="tos">Terms of Service</a>
+                <a href="#intro" class="nav-link text-gray-600 hover:text-blue-600 font-medium pb-2 transition-colors duration-200 active" data-page="intro">Introduction</a>
+                <a href="#privacy" class="nav-link text-gray-600 hover:text-blue-600 font-medium pb-2 transition-colors duration-200" data-page="privacy">Privacy Policy</a>
+                <a href="#tos" class="nav-link text-gray-600 hover:text-blue-600 font-medium pb-2 transition-colors duration-200" data-page="tos">Terms of Service</a>
             </nav>
         </header>
 
@@ -128,34 +128,39 @@
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page-content');
 
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
+            function showPageFromHash() {
+                // Get page ID from URL hash, default to 'intro' if no hash
+                const pageId = window.location.hash.substring(1) || 'intro';
 
-                    // Get the page to show from the data attribute
-                    const pageId = this.dataset.page;
-
-                    // Hide all pages
-                    pages.forEach(page => {
-                        page.classList.add('hidden');
-                    });
-
-                    // Show the target page
-                    const targetPage = document.getElementById(pageId);
-                    if (targetPage) {
-                        targetPage.classList.remove('hidden');
-                    }
-                    
-                    // Update active link style
-                    navLinks.forEach(navLink => {
-                       navLink.classList.remove('active'); 
-                    });
-                    this.classList.add('active');
-
+                // Hide all page content
+                pages.forEach(page => {
+                    page.classList.add('hidden');
                 });
-            });
+
+                // Show the target page
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.remove('hidden');
+                }
+
+                // Update the active style on the navigation link
+                navLinks.forEach(navLink => {
+                    if (navLink.dataset.page === pageId) {
+                        navLink.classList.add('active');
+                    } else {
+                        navLink.classList.remove('active');
+                    }
+                });
+            }
+
+            // Show the correct page on initial load based on the URL hash
+            showPageFromHash();
+
+            // Listen for hash changes (e.g., user clicks a link, uses back/forward buttons)
+            window.addEventListener('hashchange', showPageFromHash);
         });
     </script>
 
 </body>
 </html>
+
