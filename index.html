@@ -131,31 +131,76 @@
             opacity: 1;
             transform: translateX(0);
         }
-        .particle {
+        .galaxy-background {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
-            opacity: 0.6;
-            animation: particleFloat 10s linear infinite;
+            z-index: -1;
         }
-        @keyframes particleFloat {
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(45deg, transparent, #BB86FC, transparent);
+            animation: shoot 3s linear infinite;
+        }
+        @keyframes shoot {
             from {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
+                transform: translateX(-100px) translateY(-100px) rotate(45deg);
+                opacity: 1;
             }
             to {
-                transform: translateY(-100vh) rotate(360deg);
+                transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) rotate(45deg);
                 opacity: 0;
             }
+        }
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.1;
+            animation: nebulaFloat 20s ease-in-out infinite;
+        }
+        @keyframes nebulaFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        .constellation-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(187, 134, 252, 0.3), transparent);
+            height: 1px;
+            animation: constellationPulse 4s ease-in-out infinite;
+        }
+        @keyframes constellationPulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
         }
     </style>
 </head>
 <body class="text-white">
+
+    <!-- Galaxy Background -->
+    <div class="galaxy-background" id="galaxy"></div>
 
     <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <!-- Navigation -->
@@ -348,28 +393,125 @@
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page-content');
 
-            // Create floating particles
-            function createParticles() {
-                for (let i = 0; i < 5; i++) {
-                    setTimeout(() => {
-                        const particle = document.createElement('div');
-                        particle.className = 'particle';
-                        particle.style.left = Math.random() * 100 + '%';
-                        particle.style.animationDelay = Math.random() * 10 + 's';
-                        particle.style.fontSize = Math.random() * 10 + 10 + 'px';
-                        particle.innerHTML = ['◆', '●', '▲', '■'][Math.floor(Math.random() * 4)];
-                        particle.style.color = ['#BB86FC', '#03DAC6'][Math.floor(Math.random() * 2)];
-                        document.body.appendChild(particle);
+            // Create galaxy background animation
+            function createGalaxy() {
+                const galaxy = document.getElementById('galaxy');
+                
+                // Create static stars
+                function createStars() {
+                    for (let i = 0; i < 150; i++) {
+                        const star = document.createElement('div');
+                        star.className = 'star';
                         
-                        // Remove particle after animation
-                        setTimeout(() => particle.remove(), 10000);
-                    }, i * 2000);
+                        // Random position
+                        star.style.left = Math.random() * 100 + '%';
+                        star.style.top = Math.random() * 100 + '%';
+                        
+                        // Random size
+                        const size = Math.random() * 3 + 1;
+                        star.style.width = size + 'px';
+                        star.style.height = size + 'px';
+                        
+                        // Random animation delay
+                        star.style.animationDelay = Math.random() * 3 + 's';
+                        
+                        // Random color (white, slight blue, slight purple)
+                        const colors = ['#FFFFFF', '#E8E8FF', '#FFE8FF'];
+                        star.style.background = colors[Math.floor(Math.random() * colors.length)];
+                        
+                        galaxy.appendChild(star);
+                    }
                 }
+                
+                // Create shooting stars
+                function createShootingStar() {
+                    const shootingStar = document.createElement('div');
+                    shootingStar.className = 'shooting-star';
+                    
+                    // Random starting position
+                    shootingStar.style.left = Math.random() * 50 + '%';
+                    shootingStar.style.top = Math.random() * 50 + '%';
+                    
+                    // Random animation delay and duration
+                    shootingStar.style.animationDelay = Math.random() * 5 + 's';
+                    shootingStar.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    
+                    // Random width for trail effect
+                    const width = Math.random() * 100 + 50;
+                    shootingStar.style.width = width + 'px';
+                    
+                    galaxy.appendChild(shootingStar);
+                    
+                    // Remove after animation
+                    setTimeout(() => shootingStar.remove(), 5000);
+                }
+                
+                // Create nebula clouds
+                function createNebula() {
+                    const nebula = document.createElement('div');
+                    nebula.className = 'nebula';
+                    
+                    // Random position
+                    nebula.style.left = Math.random() * 80 + '%';
+                    nebula.style.top = Math.random() * 80 + '%';
+                    
+                    // Random size
+                    const size = Math.random() * 200 + 100;
+                    nebula.style.width = size + 'px';
+                    nebula.style.height = size + 'px';
+                    
+                    // Random color (purple, cyan, pink)
+                    const colors = [
+                        'radial-gradient(circle, rgba(187, 134, 252, 0.3) 0%, transparent 70%)',
+                        'radial-gradient(circle, rgba(3, 218, 198, 0.3) 0%, transparent 70%)',
+                        'radial-gradient(circle, rgba(255, 182, 193, 0.3) 0%, transparent 70%)'
+                    ];
+                    nebula.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // Random animation
+                    nebula.style.animationDelay = Math.random() * 10 + 's';
+                    nebula.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                    
+                    galaxy.appendChild(nebula);
+                }
+                
+                // Create constellation lines
+                function createConstellation() {
+                    const line = document.createElement('div');
+                    line.className = 'constellation-line';
+                    
+                    // Random position and size
+                    line.style.left = Math.random() * 80 + '%';
+                    line.style.top = Math.random() * 80 + '%';
+                    line.style.width = Math.random() * 100 + 50 + 'px';
+                    line.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    // Random animation
+                    line.style.animationDelay = Math.random() * 4 + 's';
+                    
+                    galaxy.appendChild(line);
+                }
+                
+                // Initialize galaxy
+                createStars();
+                createNebula();
+                createNebula();
+                createConstellation();
+                createConstellation();
+                
+                // Continuously create shooting stars
+                setInterval(createShootingStar, 3000);
+                
+                // Occasionally add new nebula
+                setInterval(() => {
+                    if (galaxy.querySelectorAll('.nebula').length < 4) {
+                        createNebula();
+                    }
+                }, 15000);
             }
 
-            // Start particle animation
-            createParticles();
-            setInterval(createParticles, 10000);
+            // Start galaxy animation
+            createGalaxy();
 
             // Typing animation for main title
             function typeWriter(element, text, speed = 100) {
