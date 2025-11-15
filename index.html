@@ -3,120 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pak Robo Advisor</title>
+    <title>SwiftWF - Intelligent Automation Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #121212 0%, #1E1E1E 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
         .nav-link.active {
-            color: #1D4ED8; /* a darker blue */
-            border-bottom: 2px solid #1D4ED8;
+            color: #BB86FC;
+            border-bottom: 2px solid #BB86FC;
+        }
+        .glass-morphism {
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(187, 134, 252, 0.2);
+        }
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(187, 134, 252, 0.3);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #BB86FC 0%, #03DAC6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(187, 134, 252, 0.5);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+        .futuristic-border {
+            border: 1px solid rgba(187, 134, 252, 0.3);
+            border-radius: 16px;
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+            color: #03DAC6;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .pulse-glow {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(187, 134, 252, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(187, 134, 252, 0.6); }
+        }
+        .page-transition {
+            animation: pageSlide 0.5s ease;
+        }
+        @keyframes pageSlide {
+            from { 
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #BB86FC, #03DAC6);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::before {
+            width: 100%;
+        }
+        .expertise-item {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+        .expertise-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.6;
+            animation: particleFloat 10s linear infinite;
+        }
+        @keyframes particleFloat {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="text-white">
 
     <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <!-- Navigation -->
-        <header class="bg-white p-4 rounded-2xl shadow-sm mb-8">
+        <header class="glass-morphism p-4 rounded-2xl pulse-glow mb-8 slide-in-left">
             <nav class="flex justify-center items-center space-x-4 sm:space-x-8">
-                <a href="#intro" class="nav-link text-gray-600 hover:text-blue-600 font-medium pb-2 transition-colors duration-200 active" data-page="intro">Introduction</a>
-                <a href="#privacy" class="nav-link text-gray-600 hover:text-blue-600 font-medium pb-2 transition-colors duration-200" data-page="privacy">Privacy Policy</a>
-                <a href="#tos" class="nav-link text-gray-600 hover:text-blue-600 font-medium pb-2 transition-colors duration-200" data-page="tos">Terms of Service</a>
+                <a href="#intro" class="nav-link text-gray-300 hover:text-purple-400 font-medium pb-2 transition-all duration-300 active" data-page="intro">Introduction</a>
+                <a href="#privacy" class="nav-link text-gray-300 hover:text-purple-400 font-medium pb-2 transition-all duration-300" data-page="privacy">Privacy Policy</a>
+                <a href="#tos" class="nav-link text-gray-300 hover:text-purple-400 font-medium pb-2 transition-all duration-300" data-page="tos">Terms of Service</a>
             </nav>
         </header>
 
         <!-- Main Content Area -->
         <main>
             <!-- Page 1: Introduction -->
-            <div id="intro" class="page-content bg-white p-8 sm:p-10 rounded-2xl shadow-sm">
-                <header class="mb-8 text-center">
-                    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Welcome to SwiftWF</h1>
-                    <p class="text-gray-500 mt-2">Intelligent Automation Solutions</p>
+            <div id="intro" class="page-content glass-morphism p-8 sm:p-10 rounded-2xl futuristic-border hover-glow fade-in">
+                <header class="mb-8 text-center fade-in">
+                    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-gradient mb-4 typing-cursor float-animation">Welcome to SwiftWF</h1>
+                    <p class="text-cyan-400 text-lg font-medium">Intelligent Automation Solutions</p>
                 </header>
-                <div class="space-y-6 text-gray-600 text-lg">
+                <div class="space-y-6 text-gray-300 text-lg leading-relaxed">
                     <p>
-                        At <span class="font-semibold">SwiftWF</span>, we are a forward-thinking software house dedicated to crafting intelligent, AI-based solutions. Our mission is to empower businesses by developing cutting-edge applications that automate complex tasks and streamline workflows.
+                        At <span class="font-semibold text-purple-400">SwiftWF</span>, we are a forward-thinking software house dedicated to crafting intelligent, AI-based solutions. Our mission is to empower businesses by developing cutting-edge applications that automate complex tasks and streamline workflows.
                     </p>
                     <p>
-                        From sophisticated data analysis to automating repetitive processes, our products are designed to enhance productivity, reduce operational costs, and unlock new opportunities for growth. Pak Robo Advisor is one example of our commitment to leveraging technology to provide valuable, real-time information.
+                        From sophisticated data analysis to automating repetitive processes, our products are designed to enhance productivity, reduce operational costs, and unlock new opportunities for growth. We leverage advanced technology to provide valuable, real-time information and transformative solutions.
                     </p>
+                    <div class="mt-8 p-6 bg-gradient-to-r from-purple-900/20 to-cyan-900/20 rounded-xl border border-purple-500/20">
+                        <h3 class="text-xl font-semibold text-purple-400 mb-3">Our Expertise</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="expertise-item"><span class="text-cyan-400 mr-2">▸</span> AI-Powered Automation</li>
+                            <li class="expertise-item"><span class="text-cyan-400 mr-2">▸</span> Data Analytics & Insights</li>
+                            <li class="expertise-item"><span class="text-cyan-400 mr-2">▸</span> Workflow Optimization</li>
+                            <li class="expertise-item"><span class="text-cyan-400 mr-2">▸</span> Real-time Information Systems</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <!-- Page 2: Privacy Policy -->
-            <div id="privacy" class="page-content bg-white p-8 sm:p-10 rounded-2xl shadow-sm hidden">
+            <div id="privacy" class="page-content glass-morphism p-8 sm:p-10 rounded-2xl futuristic-border hover-glow hidden fade-in">
                 <header class="mb-8">
-                    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Privacy Policy</h1>
-                    <p class="text-gray-500 mt-2">for Pak Robo Advisor</p>
+                    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-gradient">Privacy Policy</h1>
+                    <p class="text-cyan-400 mt-2">for SwiftWF Applications</p>
                 </header>
 
-                <div class="space-y-6 text-gray-600">
-                    <p><strong>Effective Date:</strong> September 15, 2025</p>
-
-                    <p>
-                        Your privacy is important to us. This Privacy Policy explains how Pak Robo Advisor ("we," "us," or "our") collects, uses, and protects your information when you use our web application.
-                    </p>
+                <div class="space-y-6 text-gray-300">
+                    <p class="text-cyan-400 font-semibold"><strong>Last Updated:</strong> November 15, 2025</p>
 
                     <div>
-                        <h2 class="text-xl font-semibold text-gray-800 mb-2">1. Information We Collect</h2>
-                        <p>
-                            We are committed to collecting only the information that is necessary to provide you with our service. The only piece of personal information we collect from you is your:
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">1. Introduction</h2>
+                        <p class="leading-relaxed">
+                            SwiftWF ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our applications.
                         </p>
-                        <ul class="list-disc list-inside mt-2 pl-4">
-                            <li>Phone Number</li>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">2. Information We Collect</h2>
+                        
+                        <div class="mb-4">
+                            <h3 class="text-xl font-medium text-cyan-400 mb-2">2.1 Information You Provide</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-300 ml-4">
+                                <li><strong>Financial Information:</strong> Salary details, investment amounts, property information, and loan details</li>
+                                <li><strong>Personal Information:</strong> Age, employment status, and professional category</li>
+                                <li><strong>Tax Preferences:</strong> Your choices regarding various tax deduction options</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h3 class="text-xl font-medium text-cyan-400 mb-2">2.2 Automatically Collected Information</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-300 ml-4">
+                                <li><strong>Usage Data:</strong> How you interact with our applications, features used, and time spent</li>
+                                <li><strong>Device Information:</strong> Device type, operating system, and unique device identifiers</li>
+                                <li><strong>Technical Data:</strong> IP address, browser type, and access times</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-medium text-cyan-400 mb-2">2.3 Information We Do Not Collect</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-300 ml-4">
+                                <li>Bank account numbers</li>
+                                <li>Credit/debit card information</li>
+                                <li>National identity numbers (CNIC)</li>
+                                <li>Passwords or login credentials for other services</li>
+                                <li>Exact home addresses</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">3. How We Use Your Information</h2>
+                        <p class="leading-relaxed mb-3">We use your information to:</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-300 ml-4">
+                            <li>Provide personalized recommendations</li>
+                            <li>Calculate potential savings and insights</li>
+                            <li>Improve our services and user experience</li>
+                            <li>Ensure compliance with applicable laws</li>
+                            <li>Send important updates about our applications (with your consent)</li>
                         </ul>
                     </div>
 
                     <div>
-                        <h2 class="text-xl font-semibold text-gray-800 mb-2">2. How We Use Your Information</h2>
-                        <p>
-                            We use the phone number you provide for one specific purpose: to send you stock market information and related alerts via SMS or other messaging services.
-                        </p>
-                        <p class="mt-2">
-                            We will not use your phone number for marketing, promotional calls, or any other purpose. We do not sell, trade, rent, or share your phone number with any third parties for their marketing purposes.
-                        </p>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">4. Data Storage and Security</h2>
+                        <ul class="list-disc list-inside space-y-1 text-gray-300 ml-4">
+                            <li>Your data is stored locally on your device when possible</li>
+                            <li>We use industry-standard encryption for data transmission</li>
+                            <li>Access to your information is restricted to authorized personnel</li>
+                            <li>We retain data only as long as necessary to provide our services</li>
+                        </ul>
                     </div>
 
                     <div>
-                        <h2 class="text-xl font-semibold text-gray-800 mb-2">3. Data Security</h2>
-                        <p>
-                            We implement reasonable security measures to maintain the safety of your personal information and protect it from unauthorized access, alteration, or disclosure.
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">5. Data Sharing and Disclosure</h2>
+                        <p class="leading-relaxed mb-3">
+                            We do not sell, trade, or otherwise transfer your personal information to third parties, except:
                         </p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-300 ml-4">
+                            <li><strong>Service Providers:</strong> Trusted third parties who assist in operating our applications</li>
+                            <li><strong>Legal Requirements:</strong> When required by law, court order, or government regulation</li>
+                            <li><strong>Business Transfer:</strong> In connection with a merger, acquisition, or sale of assets</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">6. Your Rights</h2>
+                        <p class="leading-relaxed mb-3">You have the right to:</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-300 ml-4">
+                            <li>Access your personal information</li>
+                            <li>Correct inaccurate information</li>
+                            <li>Delete your data from our servers</li>
+                            <li>Opt-out of marketing communications</li>
+                            <li>Export your data in a readable format</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">10. Contact Us</h2>
+                        <p class="leading-relaxed">
+                            If you have questions about this Privacy Policy, please contact us:
+                        </p>
+                        <div class="mt-3 p-4 bg-gradient-to-r from-purple-900/20 to-cyan-900/20 rounded-xl border border-purple-500/20">
+                            <p class="text-gray-300"><strong>Email:</strong> privacy@swiftwf.com</p>
+                            <p class="text-gray-300"><strong>Website:</strong> https://swiftwf.com</p>
+                            <p class="text-gray-300"><strong>Address:</strong> SwiftWF, Pakistan</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Page 3: Terms of Service -->
-            <div id="tos" class="page-content bg-white p-8 sm:p-10 rounded-2xl shadow-sm hidden">
+            <div id="tos" class="page-content glass-morphism p-8 sm:p-10 rounded-2xl futuristic-border hover-glow hidden fade-in">
                 <header class="mb-8">
-                    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Terms of Service</h1>
-                    <p class="text-gray-500 mt-2">for Pak Robo Advisor</p>
+                    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-gradient">Terms of Service</h1>
+                    <p class="text-cyan-400 mt-2">for SwiftWF Applications</p>
                 </header>
 
-                <div class="space-y-6 text-gray-600">
-                    <p><strong>Last Updated:</strong> September 15, 2025</p>
-                     <div>
-                        <h2 class="text-xl font-semibold text-gray-800 mb-2">1. Acceptance of Terms</h2>
-                        <p>By accessing or using Pak Robo Advisor, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, then you may not access the service.</p>
+                <div class="space-y-6 text-gray-300">
+                    <p class="text-cyan-400 font-semibold"><strong>Last Updated:</strong> November 15, 2025</p>
+                    
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">1. Acceptance of Terms</h2>
+                        <p class="leading-relaxed">By accessing or using SwiftWF applications, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, then you may not access the service.</p>
                     </div>
-                     <div>
-                        <h2 class="text-xl font-semibold text-gray-800 mb-2">2. Description of Service</h2>
-                        <p>Pak Robo Advisor provides users with stock market information via messaging services. The information provided is for informational purposes only and does not constitute financial advice.</p>
+                    
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">2. Description of Service</h2>
+                        <p class="leading-relaxed">SwiftWF provides intelligent automation solutions and information services. The information provided is for informational purposes only and does not constitute professional advice.</p>
                     </div>
-                     <div>
-                        <h2 class="text-xl font-semibold text-gray-800 mb-2">3. User Responsibilities</h2>
-                        <p>You are responsible for providing an accurate and current phone number. You understand that message and data rates may apply from your mobile carrier.</p>
+                    
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">3. User Responsibilities</h2>
+                        <p class="leading-relaxed">You are responsible for providing accurate and current information. You understand that message and data rates may apply from your mobile carrier.</p>
                     </div>
-                     <div>
-                        <h2 class="text-xl font-semibold text-gray-800 mb-2">4. Limitation of Liability</h2>
-                        <p>The service is provided "as is." SwiftWF and Pak Robo Advisor are not liable for any investment decisions or actions taken based on the information provided. We do not guarantee the accuracy or timeliness of the information.</p>
+                    
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">4. Limitation of Liability</h2>
+                        <p class="leading-relaxed">The service is provided "as is." SwiftWF is not liable for any decisions or actions taken based on the information provided. We do not guarantee the accuracy or timeliness of the information.</p>
                     </div>
-                     <div>
-                        <h2 class="text-xl font-semibold text-gray-800 mb-2">5. Changes to Terms</h2>
-                        <p>We reserve the right to modify these terms at any time. We will notify users of any changes by posting the new terms on this page.</p>
+                    
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">5. Changes to Terms</h2>
+                        <p class="leading-relaxed">We reserve the right to modify these terms at any time. We will notify users of any changes by posting the new terms on this page.</p>
                     </div>
                 </div>
             </div>
@@ -128,6 +348,79 @@
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page-content');
 
+            // Create floating particles
+            function createParticles() {
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        const particle = document.createElement('div');
+                        particle.className = 'particle';
+                        particle.style.left = Math.random() * 100 + '%';
+                        particle.style.animationDelay = Math.random() * 10 + 's';
+                        particle.style.fontSize = Math.random() * 10 + 10 + 'px';
+                        particle.innerHTML = ['◆', '●', '▲', '■'][Math.floor(Math.random() * 4)];
+                        particle.style.color = ['#BB86FC', '#03DAC6'][Math.floor(Math.random() * 2)];
+                        document.body.appendChild(particle);
+                        
+                        // Remove particle after animation
+                        setTimeout(() => particle.remove(), 10000);
+                    }, i * 2000);
+                }
+            }
+
+            // Start particle animation
+            createParticles();
+            setInterval(createParticles, 10000);
+
+            // Typing animation for main title
+            function typeWriter(element, text, speed = 100) {
+                element.textContent = '';
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    }
+                }
+                type();
+            }
+
+            // Start typing animation for intro page
+            const mainTitle = document.querySelector('#intro h1');
+            if (mainTitle) {
+                const originalText = mainTitle.textContent;
+                typeWriter(mainTitle, originalText, 80);
+            }
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate expertise items with delay
+                        if (entry.target.querySelector('.expertise-item')) {
+                            const items = entry.target.querySelectorAll('.expertise-item');
+                            items.forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.add('animate');
+                                }, index * 200);
+                            });
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animated elements
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+
             function showPageFromHash() {
                 // Get page ID from URL hash, default to 'intro' if no hash
                 const pageId = window.location.hash.substring(1) || 'intro';
@@ -137,10 +430,25 @@
                     page.classList.add('hidden');
                 });
 
-                // Show the target page
+                // Show the target page with animation
                 const targetPage = document.getElementById(pageId);
                 if (targetPage) {
                     targetPage.classList.remove('hidden');
+                    targetPage.classList.add('page-transition');
+                    
+                    // Remove animation class after completion
+                    setTimeout(() => {
+                        targetPage.classList.remove('page-transition');
+                    }, 500);
+                    
+                    // Re-trigger animations for the new page
+                    const animatedElements = targetPage.querySelectorAll('.fade-in');
+                    animatedElements.forEach(el => {
+                        el.classList.remove('visible');
+                        setTimeout(() => {
+                            el.classList.add('visible');
+                        }, 100);
+                    });
                 }
 
                 // Update the active style on the navigation link
@@ -158,6 +466,20 @@
 
             // Listen for hash changes (e.g., user clicks a link, uses back/forward buttons)
             window.addEventListener('hashchange', showPageFromHash);
+
+            // Add smooth scroll behavior
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
         });
     </script>
 
