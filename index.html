@@ -209,6 +209,7 @@
                 <a href="#intro" class="nav-link text-gray-300 hover:text-purple-400 font-medium pb-2 transition-all duration-300 active" data-page="intro">Introduction</a>
                 <a href="#tax_privacy" class="nav-link text-gray-300 hover:text-purple-400 font-medium pb-2 transition-all duration-300" data-page="tax_privacy">Tax Advisor Privacy Policy</a>
                 <a href="#privacy" class="nav-link text-gray-300 hover:text-purple-400 font-medium pb-2 transition-all duration-300" data-page="privacy">Privacy Policy</a>
+                <a href="#niama_policy" class="nav-link text-gray-300 hover:text-purple-400 font-medium pb-2 transition-all duration-300" data-page="niama_policy">Niama Studio Policy</a>
                 <a href="#tos" class="nav-link text-gray-300 hover:text-purple-400 font-medium pb-2 transition-all duration-300" data-page="tos">Terms of Service</a>
             </nav>
         </header>
@@ -484,7 +485,58 @@
                 </div>
             </div>
 
-            <!-- Page 4: Terms of Service -->
+            <!-- Page 4: Niama Studio Policy -->
+            <div id="niama_policy" class="page-content glass-morphism p-8 sm:p-10 rounded-2xl futuristic-border hover-glow hidden fade-in">
+                <header class="mb-8">
+                    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-gradient">Niama Studio Policy</h1>
+                    <p class="text-cyan-400 mt-2">Protecting young learners and their creativity</p>
+                </header>
+
+                <div class="space-y-6 text-gray-300">
+                    <div class="p-4 bg-gradient-to-r from-blue-900/20 via-purple-900/20 to-cyan-900/20 rounded-xl border border-cyan-500/20">
+                        <h2 class="text-xl font-semibold text-cyan-300 mb-3">Our Promise</h2>
+                        <p>
+                            Niama Studio creates playful learning apps for children with care, empathy, and an unwavering focus on safety. We do not take, save, or transmit any personal information—everything stays securely on the user’s device. Your trust matters most, and we design every experience to educate kids while keeping families in control of their data.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">Privacy at the Core</h2>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300 ml-4">
+                            <li><strong>No Accounts Needed:</strong> Children can explore our educational stories and games without creating profiles or sharing identifiers.</li>
+                            <li><strong>On-Device Only:</strong> Lesson progress, drawings, and preferences are stored locally. If you uninstall the app, all data is permanently removed.</li>
+                            <li><strong>No Hidden Storage:</strong> We never back up children’s creations to external servers or third parties.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">Full Control for Families</h2>
+                        <p class="leading-relaxed mb-3">
+                            We believe parents and guardians should be able to reset and refresh the experience whenever they choose.
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300 ml-4">
+                            <li>Use the in-app <em>Settings → Clear Data</em> option to remove saved progress instantly.</li>
+                            <li>Resetting or reinstalling the app wipes every file because nothing leaves the device.</li>
+                            <li>Need extra reassurance? Device-level options such as “Clear Storage” ensure a fresh start in seconds.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-400 mb-3">Safety & Care</h2>
+                        <p class="leading-relaxed">
+                            Our titles are crafted by educators and child-safety specialists. We follow strict guidelines, avoid ads, and provide gentle prompts so young minds can learn with confidence. Every design decision centers the learner, emphasizing kindness, inclusivity, and age-appropriate storytelling.
+                        </p>
+                    </div>
+
+                    <div class="p-4 bg-gradient-to-r from-green-900/20 to-emerald-900/20 rounded-xl border border-green-500/20">
+                        <h2 class="text-xl font-semibold text-green-300 mb-2">Need Help?</h2>
+                        <p>If you have questions about our privacy stance or want to suggest new educational topics, reach out anytime.</p>
+                        <p class="text-gray-200 mt-2"><strong>Email:</strong> support@swiftwf.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 5: Terms of Service -->
             <div id="tos" class="page-content glass-morphism p-8 sm:p-10 rounded-2xl futuristic-border hover-glow hidden fade-in">
                 <header class="mb-8">
                     <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-gradient">Terms of Service</h1>
@@ -703,7 +755,7 @@
                 let pageId = window.location.hash.substring(1) || 'intro';
                 
                 // Validate page ID - if invalid, redirect to intro
-                const validPages = ['intro', 'tax_privacy', 'privacy', 'tos'];
+                const validPages = ['intro', 'tax_privacy', 'privacy', 'niama_policy', 'tos'];
                 if (!validPages.includes(pageId)) {
                     pageId = 'intro';
                     // Update URL to valid page
@@ -755,6 +807,7 @@
                     'intro': 'Swift Workflow - Intelligent Automation Solutions',
                     'tax_privacy': 'Tax Advisor Privacy Policy - Swift Workflow',
                     'privacy': 'Privacy Policy - Swift Workflow',
+                    'niama_policy': 'Niama Studio Policy - Swift Workflow',
                     'tos': 'Terms of Service - Swift Workflow'
                 };
                 document.title = titles[pageId] || titles['intro'];
