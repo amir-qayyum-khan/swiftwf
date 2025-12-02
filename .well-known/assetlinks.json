@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.swiftwf.pak_tax_advisor",
+      "sha256_cert_fingerprints": [
+        "C8:D2:0B:75:00:9E:DD:67:8E:EB:F8:80:D1:2E:48:04:FE:DE:99:EF:F0:21:A4:BF:E3:CC:B2:0F:48:58:10:95"
+      ]
+    }
+  }
+]
